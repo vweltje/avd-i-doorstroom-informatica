@@ -1,9 +1,8 @@
-<?php 
+<?php
 
 require_once 'User.php';
 
 class Dashboard {
-
     private $user;
 
     public $pageTitle = 'Dashboard';

@@ -1,7 +1,6 @@
-<?php 
+<?php
 
 class User {
-
     private $user = false;
     public $pageTitle = 'User';
 
@@ -34,7 +33,7 @@ class User {
 
     public function loggedIn() {
         return (bool) $this->user;
-    } 
+    }
 
     public function getBody() {
         return '';

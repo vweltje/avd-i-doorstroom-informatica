@@ -1,11 +1,9 @@
-<?php 
+<?php
 
 require_once 'User.php';
-require_once 'views/pages/login.php';
 require_once 'helpers/FormHelper.php';
 
 class Login {
-
     private $user;
 
     public $pageTitle = 'Login';
@@ -31,9 +29,9 @@ class Login {
         $password = FormHelper::getField('password');
         if (!$username && !$password) {
             $errorMessage = 'Please enter your username and password.';
-        } else if (!$username) {
+        } elseif (!$username) {
             $errorMessage = 'Please enter a username';
-        } else if (!$password) {
+        } elseif (!$password) {
             $errorMessage = 'Please enter your password';
         } else {
             $username = $_POST['username'];
@@ -47,6 +45,7 @@ class Login {
     }
 
     public function getBody() {
+        require_once 'views/pages/login.php';
         return loginView($this->errorMessage);
     }
 }

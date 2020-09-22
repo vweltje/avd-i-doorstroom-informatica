@@ -2,7 +2,7 @@
 
 require_once 'views/components/container.php';
 
-function dashboardView ($test) {
+function dashboardView($test) {
     ob_start(); ?>
         <h1>Dashboard</h1>
         <form action="/logout" acton="post">

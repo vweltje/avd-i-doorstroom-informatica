@@ -6,11 +6,11 @@ require_once 'controllers/User.php';
 
 class Router {
     public static function getView() {
-        $route = Router::getRoute();
+        $route = self::getRoute();
         $view;
-        if ($route === "/login") { 
+        if ($route === "/login") {
             $view = new Login();
-        } else if ($route === '/logout') {
+        } elseif ($route === '/logout') {
             User::logout();
         } else {
             $view = new Dashboard();
@@ -19,7 +19,7 @@ class Router {
     }
 
     private static function getRoute() {
-        $route = strtok($_SERVER['REQUEST_URI'],'?'); // remove query string from url
+        $route = strtok($_SERVER['REQUEST_URI'], '?'); // remove query string from url
         return $route;
     }
 }

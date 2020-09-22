@@ -4,7 +4,7 @@ require_once 'views/components/container.php';
 require_once 'views/components/message.php';
 require_once 'helpers/FormHelper.php';
 
-function loginView ($errorMessage = '') {
+function loginView($errorMessage = '') {
     ob_start(); ?>
         <h1>Login</h1>
         <p>Login to continue to the dashboard</p>
