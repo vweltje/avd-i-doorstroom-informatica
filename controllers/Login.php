@@ -13,6 +13,9 @@ class Login {
 
     public function __construct() {
         $this->user = new User();
+        if ($this->isLoginFormSubmit()) {
+            $this->handleLogin();
+        }
         if ($this->user->loggedIn()) {
             header('Location: /');
         }
@@ -35,14 +38,15 @@ class Login {
         } else {
             $username = $_POST['username'];
             $password = $_POST['password'];
+            $response = $this->user->login($username, $password);
+            if (isset($response['error'])) {
+                $errorMessage = $response['error'];
+            }
         }
         $this->errorMessage = $errorMessage;
     }
 
     public function getBody() {
-        if ($this->isLoginFormSubmit()) {
-            $this->handleLogin();
-        }
         return loginView($this->errorMessage);
     }
 }

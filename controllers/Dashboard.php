@@ -16,7 +16,7 @@ class Dashboard {
     }
 
     public function getBody() {
-        require_once '../views/pages/dashboard.php';
+        require_once 'views/pages/dashboard.php';
         return dashboardView('met een test variable');
     }
 }
