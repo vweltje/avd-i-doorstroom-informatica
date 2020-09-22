@@ -9,6 +9,10 @@ class User {
         
     }
 
+    public function login() {
+        
+    }
+
     public function loggedIn() {
         return false;
     } 

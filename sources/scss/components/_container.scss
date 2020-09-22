@@ -1,0 +1,10 @@
+//
+// Container
+// --------------------------------------------------
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: $container-width;
+  padding: 0 #{$spacing * 2};
+}
