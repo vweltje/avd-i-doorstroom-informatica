@@ -1,0 +1,31 @@
+{
+  "name": "avd-i-doorstroom-informatica",
+  "version": "1.0.0",
+  "description": "ACD I Doorstroom Informatice",
+  "main": "webpack.mix.js",
+  "scripts": {
+    "start": "npm run watch",
+    "dev": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "keywords": [],
+  "author": "Vincent Weltje",
+  "license": "ISC",
+  "devDependencies": {
+    "laravel-mix": "^5.0.0",
+    "resolve-url-loader": "^3.1.0",
+    "sass": "^1.23.1",
+    "sass-loader": "^8.0.0",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie >= 11"
+  ]
+}

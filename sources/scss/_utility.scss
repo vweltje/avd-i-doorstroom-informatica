@@ -1,0 +1,54 @@
+//
+// Utility
+// --------------------------------------------------
+
+.container {
+  position: relative;
+  padding: 0 #{$spacing * 1.5};
+  width: 100%;
+  max-width: $container-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (max-width: $breakpoint-medium) {
+    padding: 0 10px;
+  }
+
+  &.smaller {
+    max-width: $container-width-smaller;
+  }
+
+  &.small {
+    max-width: $container-width-small;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.spacing-bottom {
+  margin-bottom: #{$spacing * 3};
+}
+
+.spacing-top {
+  margin-top: #{$spacing * 3};
+}
