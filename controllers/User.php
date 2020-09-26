@@ -34,6 +34,13 @@ class User {
         return $_SESSION['user'] ?? false;
     }
     
+    private function getGroups() {
+        $db = new Database();
+        $groupIds = $db->select(['group-id'])->from('user-groups')->where(['user-id' => $this->user['id']])->getAll();
+        $groups = $db->select(['name'])->from('groups')->where(['id IN' => $groupIds])->getAll();
+        return $groups;
+    }
+
     public static function logout() {
         unset($_SESSION['user']);
         header('Location: /');
@@ -45,5 +52,12 @@ class User {
 
     public function getName() {
         return $this->user['name'] ?? '';
+    }
+
+    public function inGroup($group) {
+        if (!$group) {
+            return false;
+        }
+        return in_array($group, $this->getGroups());
     }
 }
