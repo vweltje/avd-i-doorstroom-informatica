@@ -1,3 +1,21 @@
 //
 // Page login
 // --------------------------------------------------
+
+#login {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: #{$spacing * 5};
+
+  form {
+    max-width: $breakpoint-extra-small;
+    margin: 0 auto;
+
+    input {
+      width: 100%;
+      display: block;
+      margin-bottom: $spacing;
+    }
+  }
+}
