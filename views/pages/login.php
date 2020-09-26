@@ -12,7 +12,7 @@ function loginView($errorMessage = '') {
             <?= message('error', $errorMessage); ?>
         <?php endif; ?>
         <form action="/login" method="post">
-            <input type="text" placeholder="Enter your username" name="username" value="<?= FormHelper::getField('username') ?>" />
+            <input type="text" placeholder="Enter your email" name="email" value="<?= FormHelper::getField('email') ?>" />
             <input type="password" placeholder="Enter your password" name="password" value="<?= FormHelper::getField('password') ?>" />
             <button type="submit">Login</button>
         </form>

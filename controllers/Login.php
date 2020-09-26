@@ -25,18 +25,18 @@ class Login {
 
     private function handleLogin() {
         $errorMessage = '';
-        $username = FormHelper::getField('username');
+        $email = FormHelper::getField('email');
         $password = FormHelper::getField('password');
-        if (!$username && !$password) {
-            $errorMessage = 'Please enter your username and password.';
-        } elseif (!$username) {
-            $errorMessage = 'Please enter a username';
+        if (!$email && !$password) {
+            $errorMessage = 'Please enter your email and password.';
+        } elseif (!$email) {
+            $errorMessage = 'Please enter a email';
         } elseif (!$password) {
             $errorMessage = 'Please enter your password';
         } else {
-            $username = $_POST['username'];
+            $email = $_POST['email'];
             $password = $_POST['password'];
-            $response = $this->user->login($username, $password);
+            $response = $this->user->login($email, $password);
             if (isset($response['error'])) {
                 $errorMessage = $response['error'];
             }
