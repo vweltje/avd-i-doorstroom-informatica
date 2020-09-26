@@ -7,15 +7,12 @@ require_once 'controllers/User.php';
 class Router {
     public static function getView() {
         $route = self::getRoute();
-        $view;
         if ($route === "/login") {
-            $view = new Login();
+            return new Login();
         } elseif ($route === '/logout') {
-            User::logout();
-        } else {
-            $view = new Dashboard();
+            return User::logout();
         }
-        return $view;
+        return new Dashboard();
     }
 
     private static function getRoute() {

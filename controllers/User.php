@@ -7,12 +7,12 @@ class User {
     public $pageTitle = 'User';
 
     public function __construct() {
-        $this->setUser();
+        $this->user = $this->getUser();
     }
 
     public function login($email, $password) {
         $db = new Database();
-        $user = $db->where(array('email' => $email))->from('users')->get();
+        $user = $db->where(['email' => $email])->from('users')->get();
         if (is_array($user)) {
             if (password_verify($password, $user['password'])) {
                 $this->user = $user;
@@ -28,11 +28,8 @@ class User {
     }
 
 
-    private function setUser() {
-        $user = $_SESSION['user'] ?? false;
-        if ($user) {
-            $this->user = $user;
-        }
+    private function getUser() {
+        return $_SESSION['user'] ?? false;
     }
     
     public static function logout() {
@@ -42,9 +39,5 @@ class User {
 
     public function loggedIn() {
         return (bool) $this->user;
-    }
-
-    public function getBody() {
-        return '';
     }
 }
