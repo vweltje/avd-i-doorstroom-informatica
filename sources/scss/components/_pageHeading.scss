@@ -1,0 +1,20 @@
+//
+// pageHeader
+// --------------------------------------------------
+
+#pageHeading {
+  border-bottom: 1px solid $colorLightGreen;
+  #pageHeading--userActions {
+    align-items: center;
+    justify-content: center;
+
+    p {
+      margin: 0;
+      margin-right: $spacing;
+    }
+
+    form {
+      margin: 0;
+    }
+  }
+}

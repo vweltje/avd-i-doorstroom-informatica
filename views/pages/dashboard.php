@@ -1,12 +1,10 @@
 <?php
 
 require_once 'views/components/container.php';
+require_once 'views/components/pageHeading.php';
 
-function dashboardView($test) {
+function dashboardView($user) {
     ob_start(); ?>
-        <h1>Dashboard</h1>
-        <form action="/logout" acton="post">
-            <button type="submit">Logout</button>
-        </form>
-    <?php return wrapContainer(ob_get_clean());
+        <?= pageHeading('Dashboard', $user) ?>
+    <?php return container(ob_get_clean());
 }

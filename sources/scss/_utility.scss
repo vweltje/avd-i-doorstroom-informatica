@@ -6,20 +6,20 @@
   position: relative;
   padding: 0 #{$spacing * 1.5};
   width: 100%;
-  max-width: $container-width;
+  max-width: $containerWidth;
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (max-width: $breakpoint-medium) {
+  @media screen and (max-width: $breakpointMedium) {
     padding: 0 10px;
   }
 
   &.smaller {
-    max-width: $container-width-smaller;
+    max-width: $containerWidthSmaller;
   }
 
   &.small {
-    max-width: $container-width-small;
+    max-width: $containerWidthSmall;
   }
 }
 

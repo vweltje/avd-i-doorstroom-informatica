@@ -20,5 +20,5 @@ function loginView($errorMessage = '') {
             <button type="submit">Login</button>
         </form>
     </div>
-    <?php return wrapContainer(ob_get_clean());
+    <?php return container(ob_get_clean());
 }

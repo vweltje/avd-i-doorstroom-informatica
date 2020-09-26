@@ -27,11 +27,11 @@ p {
 h1 {
   font-size: 36px;
 
-  @media screen and (max-width: $breakpoint-medium) {
+  @media screen and (max-width: $breakpointMedium) {
     font-size: 32px;
   }
 
-  @media screen and (max-width: $breakpoint-extra-small) {
+  @media screen and (max-width: $breakpointExtraSmall) {
     font-size: 24px;
   }
 }
@@ -39,12 +39,12 @@ h1 {
 h2 {
   font-size: 32px;
 
-  @media screen and (max-width: $breakpoint-medium) {
+  @media screen and (max-width: $breakpointMedium) {
     font-size: 28px;
     line-height: 36px;
   }
 
-  @media screen and (max-width: $breakpoint-extra-small) {
+  @media screen and (max-width: $breakpointExtraSmall) {
     font-size: 20px;
     line-height: 26px;
   }
@@ -53,11 +53,11 @@ h2 {
 h3 {
   font-size: 24px;
 
-  @media screen and (max-width: $breakpoint-medium) {
+  @media screen and (max-width: $breakpointMedium) {
     font-size: 22px;
   }
 
-  @media screen and (max-width: $breakpoint-extra-small) {
+  @media screen and (max-width: $breakpointExtraSmall) {
     font-size: 18px;
   }
 }

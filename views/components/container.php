@@ -1,6 +1,6 @@
 <?php
 
-function wrapContainer($children) {
+function container($children) {
     ob_start(); ?>
     <div class="container"> 
         <?= $children ?>

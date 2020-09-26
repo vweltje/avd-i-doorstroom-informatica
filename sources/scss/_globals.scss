@@ -5,7 +5,7 @@
 html {
   font-size: 16px;
 
-  @media screen and (max-width: $breakpoint-medium) {
+  @media screen and (max-width: $breakpointMedium) {
     font-size: 14px;
   }
 }

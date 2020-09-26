@@ -13,6 +13,8 @@ class User {
     public function login($email, $password) {
         $db = new Database();
         $user = $db->where(['email' => $email])->from('users')->get();
+        // echo password_hash($password, PASSWORD_DEFAULT);
+        // exit;
         if (is_array($user)) {
             if (password_verify($password, $user['password'])) {
                 $this->user = $user;
@@ -39,5 +41,9 @@ class User {
 
     public function loggedIn() {
         return (bool) $this->user;
+    }
+
+    public function getName() {
+        return $this->user['name'] ?? '';
     }
 }
