@@ -1,8 +1,9 @@
 <?php
 
+require_once 'iView.php';
 require_once 'User.php';
 
-class Dashboard {
+class Dashboard implements iView {
     private $user;
 
     public $pageTitle = 'Dashboard';
@@ -16,6 +17,6 @@ class Dashboard {
 
     public function getBody() {
         require_once 'views/pages/dashboard.php';
-        return dashboardView($this->user);
+        return dashboardView();
     }
 }

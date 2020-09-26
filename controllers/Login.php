@@ -1,9 +1,10 @@
 <?php
 
+require_once 'iView.php';
 require_once 'User.php';
 require_once 'helpers/FormHelper.php';
 
-class Login {
+class Login implements iView {
     private $user;
     public $pageTitle = 'Login';
     private $errorMessage = '';

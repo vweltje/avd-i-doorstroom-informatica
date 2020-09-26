@@ -57,13 +57,13 @@ class Database {
         return $this;
     }
 
-    private function getQuery() {
+    private function getQueryString() {
         $additionalWhere = $this->where ? ' WHERE ' . $this->where : '';
         return "SELECT {$this->select} FROM {$this->table}{$additionalWhere};";
     }
 
     private function executeQuery() {
-        $statement = $this->db->prepare($this->getQuery());
+        $statement = $this->db->prepare($this->getQueryString());
         $statement->execute();
         return $statement;
     }
@@ -79,7 +79,9 @@ class Database {
     }
 
     public function get() {
-        return $this->executeQuery()->fetch();
+        $result = $this->executeQuery()->fetch();
+        $this->reset();
+        return $result;
     }
 
     public function getAll() {
