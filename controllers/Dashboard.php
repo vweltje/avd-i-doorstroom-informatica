@@ -10,12 +10,12 @@ class Dashboard implements iView {
     public $pageTitle = 'Dashboard';
 
     public function __construct() {
-        $ticketController = new tickets();
-        $this->user = new User();
-        $this->tickets = $ticketController->getAllTickets();
         if (!$this->user->loggedIn()) {
             header('Location: /login');
         }
+        $ticketController = new tickets();
+        $this->user = new User();
+        $this->tickets = $ticketController->getAllTickets();
     }
 
     public function getBody() {

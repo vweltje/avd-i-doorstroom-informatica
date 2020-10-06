@@ -22,6 +22,15 @@ class Login implements iView {
     private function handleLogin() {
         $email = FormHelper::getField('email');
         $password = FormHelper::getField('password');
+        if ($this->validateInput($email, $password)) {
+            $response = $this->user->login($email, $password);
+            if (isset($response['error'])) {
+                $this->errorMessage = $response['error'];
+            }
+        }
+    }
+
+    private function validateInput($email, $password) {
         if (!$email && !$password) {
             $this->errorMessage = 'Please enter your email and password.';
         } elseif (!$email) {
@@ -29,11 +38,9 @@ class Login implements iView {
         } elseif (!$password) {
             $this->errorMessage = 'Please enter your password.';
         } else {
-            $response = $this->user->login($email, $password);
-            if (isset($response['error'])) {
-                $this->errorMessage = $response['error'];
-            }
+            return true;
         }
+        return false;
     }
 
     public function getBody() {

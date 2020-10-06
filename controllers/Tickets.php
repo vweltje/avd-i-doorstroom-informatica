@@ -16,8 +16,16 @@ class Tickets implements iView {
     }
 
     private function handleFormInput($id) {
-        $name = FormHelper::getField('name');
-        $description = FormHelper::getField('description');
+        $data = [
+            'name' => FormHelper::getField('name'), 
+            'description' => FormHelper::getField('description')
+        ];
+        if ($this->validateInput($data)) {
+            return $id ? $this->updateTicket($id, $data) : $this->createNewTicket($data);
+        }
+    }
+
+    private function validateInput($data) {
         if (!$name && !$description) {
             $this->errorMessage = 'Please enter a name and description.';
         } elseif (!$name) {
@@ -25,13 +33,9 @@ class Tickets implements iView {
         } elseif (!$description) {
             $this->errorMessage = 'Please enter a description.';
         } else {
-            $data = ['name' => $name, 'description' => $description];
-            if (!$id) {
-                return $this->createNewTicket($data);
-            } else {
-                return $this->updateTicket($id, $data);
-            }
+            return true;
         }
+        return false;
     }
 
     private function createNewTicket($data) {
@@ -54,10 +58,7 @@ class Tickets implements iView {
     public function getAllTickets() {
         $db = new Database();
         $tickets = $db->select('*')->from('tickets')->getAll();
-        if ($tickets) {
-            return $this->groupByStatus($tickets);
-        }
-        return false;
+        return count($tickets) > 0 ? $this->groupByStatus($tickets) : false;
     }
 
     private function groupByStatus($tickets) {
@@ -70,7 +71,7 @@ class Tickets implements iView {
         return $manipulatedTickets;
     }
 
-    private function currentTicket() {
+    private function getCurrentTicket() {
         if ($this->currentTicketId) {
             $db = new Database();
             $ticket = $db->select('*')->from('tickets')->where(['id' => $this->currentTicketId])->get();
@@ -80,6 +81,6 @@ class Tickets implements iView {
 
     public function getBody() {
         require_once 'views/pages/ticketForm.php';
-        return ticketFormView($this->errorMessage, $this->currentTicket());
+        return ticketFormView($this->errorMessage, $this->getCurrentTicket());
     }
 }

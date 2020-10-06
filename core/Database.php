@@ -57,29 +57,8 @@ class Database {
         return $this;
     }
 
-    public function from($table) {
+    public function from($table) { // functions as alias for table, just for better readability 
         return $this->table($table);
-    }
-
-    private function getQueryString() {
-        $additionalWhere = $this->where ? ' WHERE ' . $this->where : '';
-        return "SELECT {$this->select} FROM {$this->table}{$additionalWhere};";
-    }
-
-    private function executeQuery($query = false) {
-        $statement = $this->db->prepare($query ? $query : $this->getQueryString());
-        $statement->execute();
-        return $statement;
-    }
-
-    private function reset() {
-        $this->select = '';
-        $this->where = '';
-        $this->table = '';
-    }
-
-    private function implodeAndWrap($array, $wrapper = '`') { // returns "`foo`,`bar`"
-        return "$wrapper" . implode("$wrapper, $wrapper", $array) . "$wrapper";
     }
 
     public function get() {
@@ -114,7 +93,7 @@ class Database {
             foreach ($data as $key => $value) {
                 $field = "`{$key}` = '{$value}'";
                 if ($count !== 0) {
-                    $updateString = "{$updateString}, {$field}";
+                    $updateString .= ", {$field}";
                 } else {
                     $updateString = $field;
                 }
@@ -126,6 +105,29 @@ class Database {
             return true;
         }
         return false;
+    }
+
+    private function getQueryString() {
+        $additionalWhere = $this->where ? ' WHERE ' . $this->where : '';
+        return "SELECT {$this->select} FROM {$this->table}{$additionalWhere};";
+    }
+
+    private function executeQuery($query = false) {
+        $statement = $this->db->prepare($query ? $query : $this->getQueryString());
+        return $statement->execute();
+    }
+
+    private function reset() {
+        $this->select = '';
+        $this->where = '';
+        $this->table = '';
+    }
+
+    /*
+    * return ["`foo`,`bar`"]
+    */
+    private function implodeAndWrap($array, $wrapper = '`') {
+        return "$wrapper" . implode("$wrapper, $wrapper", $array) . "$wrapper";
     }
 
     /*

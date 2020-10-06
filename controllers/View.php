@@ -2,8 +2,6 @@
 
 require_once 'core/Router.php';
 
-global $constants;
-
 class View {
     private $siteTitle = 'Ticketify';
     private $view;

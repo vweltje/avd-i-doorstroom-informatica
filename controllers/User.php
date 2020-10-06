@@ -12,16 +12,16 @@ class User {
 
     public function login($email, $password) {
         $db = new Database();
-        $user = $db->select('*')->where(['email' => $email])->from('users')->get();
+        $user = $db->select('*')->from('users')->where(['email' => $email])->get();
         // echo password_hash($password, PASSWORD_DEFAULT);
         // exit;
         if (is_array($user)) {
             if (password_verify($password, $user['password'])) {
                 $this->user = $user;
                 $_SESSION['user'] = $this->user;
-                return header('Location: /');
+                header('Location: /');
             } else {
-                $errorMessage = 'Your it looks like your username and password didn\'t match.';
+                $errorMessage = 'It looks like your username and password didn\'t match.';
             }
         } else {
             $errorMessage = 'Your login credentials didn\'t match any of our users, please try again.';
@@ -55,9 +55,6 @@ class User {
     }
 
     public function inGroup($group) {
-        if (!$group) {
-            return false;
-        }
-        return in_array($group, $this->getGroups());
+        return $group ? in_array($group, $this->getGroups()) : false;
     }
 }
