@@ -44,7 +44,7 @@ class Database {
 
     public function select($fields = []) {
         $this->select = '*'; // default select all
-        if (!empty($fields)) {
+        if (!empty($fields) && $fields !== '*') {
             $this->select = $this->implodeAndWrap($fields); // wrap ech field in `` and add comma between fields
         }
         return $this;
