@@ -3,7 +3,7 @@
 require_once 'controllers/Dashboard.php';
 require_once 'controllers/Login.php';
 require_once 'controllers/User.php';
-require_once 'controllers/Ticket.php';
+require_once 'controllers/Tickets.php';
 
 class Router {
     public static function getView() {
@@ -13,7 +13,7 @@ class Router {
         } elseif ($route === '/logout') {
             return User::logout();
         } elseif ($route === '/new-ticket') {
-            return new Ticket();
+            return new Tickets();
         }
         return new Dashboard();
     }

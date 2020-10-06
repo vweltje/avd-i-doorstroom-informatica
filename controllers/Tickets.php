@@ -3,7 +3,7 @@
 require_once 'iView.php';
 require_once 'helpers/FormHelper.php';
 
-class Ticket implements iView {
+class Tickets implements iView {
     public $pageTitle = 'Ticket form';
     private $errorMessage = '';
 
@@ -39,6 +39,25 @@ class Ticket implements iView {
             header('Location: /');
         }
         $this->errorMessage = "Something went wrong, please try again.";
+    }
+
+    public function getAllTickets() {
+        $db = new Database();
+        $tickets = $db->select('*')->from('tickets')->getAll();
+        if ($tickets) {
+            return $this->groupByStatus($tickets);
+        }
+        return false;
+    }
+
+    private function groupByStatus($tickets) {
+        $manipulatedTickets = [];
+        foreach ($tickets as $ticket) {
+            $status = $ticket->status;
+            unset($ticket->status);
+            $manipulatedTickets[$status][] = $ticket;
+        }
+        return $manipulatedTickets;
     }
 
     public function getBody() {
