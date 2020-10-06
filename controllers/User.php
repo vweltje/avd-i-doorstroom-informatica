@@ -12,7 +12,7 @@ class User {
 
     public function login($email, $password) {
         $db = new Database();
-        $user = $db->where(['email' => $email])->from('users')->get();
+        $user = $db->select('*')->where(['email' => $email])->from('users')->get();
         // echo password_hash($password, PASSWORD_DEFAULT);
         // exit;
         if (is_array($user)) {
