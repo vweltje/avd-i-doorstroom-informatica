@@ -48,13 +48,17 @@ class Database {
             $this->select = $this->implodeAndWrap($fields); // wrap ech field in `` and add comma between fields
         }
         return $this;
-    } 
+    }
 
-    public function from($table) {
+    public function table($table = '') {
         if (!empty($table)) {
             $this->table = "`{$table}`";
         }
         return $this;
+    }
+
+    public function from($table) {
+        return $this->table($table);
     }
 
     private function getQueryString() {
@@ -62,8 +66,8 @@ class Database {
         return "SELECT {$this->select} FROM {$this->table}{$additionalWhere};";
     }
 
-    private function executeQuery() {
-        $statement = $this->db->prepare($this->getQueryString());
+    private function executeQuery($query = false) {
+        $statement = $this->db->prepare($query ? $query : $this->getQueryString());
         $statement->execute();
         return $statement;
     }
@@ -74,7 +78,7 @@ class Database {
         $this->table = '';
     }
 
-    private function implodeAndWrap($array, $wrapper = '`') {
+    private function implodeAndWrap($array, $wrapper = '`') { // returns "`foo`,`bar`"
         return "$wrapper" . implode("$wrapper, $wrapper", $array) . "$wrapper";
     }
 
@@ -89,6 +93,18 @@ class Database {
         $resultsClean = $this->clean($result);
         $this->reset();
         return $resultsClean;
+    }
+
+    public function insert($data = []) {
+        if (!empty($data)) {
+            $fieldsString = $this->implodeAndWrap(array_keys($data));
+            $valuesString = $this->implodeAndWrap($data, "'");
+            $sql = "INSERT INTO {$this->table} ({$fieldsString}) VALUES ({$valuesString})";
+            $result = $this->executeQuery($sql)->fetch();
+            $this->reset();
+            return $this->db->lastInsertId();
+        }
+        return false;
     }
 
     /*
