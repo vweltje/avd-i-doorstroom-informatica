@@ -17,6 +17,8 @@ class Router {
             return User::logout();
         } elseif ($route === '/new-ticket') {
             return new Tickets();
+        } elseif ($route === '/edit-ticket') {
+            return new Tickets($_GET['id'] ?? false);
         }
         return new Four0four();
     }

@@ -8,4 +8,14 @@ class FormHelper {
     public static function getField($fieldName, $type = 'POST') {
         return $_POST[$fieldName] ?? '';
     }
+    
+    public static function getFieldValue($fieldName, $defaultValue = false) {
+        if ($defaultValue && !empty($defaultValue)) {
+            $newUserInput = self::getField($fieldName);
+            if (empty($newUserInput)) {
+                return $defaultValue;
+            }
+        }
+        return self::getField($fieldName);
+    }
 }

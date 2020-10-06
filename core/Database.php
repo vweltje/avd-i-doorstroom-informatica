@@ -83,7 +83,7 @@ class Database {
     }
 
     public function get() {
-        $result = $this->executeQuery()->fetch();
+        $result = $this->executeQuery()->fetch(PDO::FETCH_ASSOC);
         $this->reset();
         return $result;
     }
@@ -99,10 +99,31 @@ class Database {
         if (!empty($data)) {
             $fieldsString = $this->implodeAndWrap(array_keys($data));
             $valuesString = $this->implodeAndWrap($data, "'");
-            $sql = "INSERT INTO {$this->table} ({$fieldsString}) VALUES ({$valuesString})";
+            $sql = "INSERT INTO {$this->table} ({$fieldsString}) VALUES ({$valuesString});";
             $result = $this->executeQuery($sql)->fetch();
             $this->reset();
             return $this->db->lastInsertId();
+        }
+        return false;
+    }
+
+    public function update($data = []) {
+        if (!empty($data)) {
+            $updateString = '';
+            $count = 0;
+            foreach ($data as $key => $value) {
+                $field = "`{$key}` = '{$value}'";
+                if ($count !== 0) {
+                    $updateString = "{$updateString}, {$field}";
+                } else {
+                    $updateString = $field;
+                }
+                $count++;
+            }
+            $sql = "UPDATE {$this->table} SET {$updateString} WHERE {$this->where};";
+            $result = $this->executeQuery($sql)->fetch();
+            $this->reset();
+            return true;
         }
         return false;
     }
