@@ -1,18 +1,18 @@
 <?php
 
-require_once 'core/Database.php';
+require_once 'models/UserModel.php';
 
 class User {
     private $user = false;
-    public $pageTitle = 'User';
+    private $model;
 
     public function __construct() {
         $this->user = $this->getUser();
+        $this->model = new UserModel();
     }
 
     public function login($email, $password) {
-        $db = new Database();
-        $user = $db->select('*')->from('users')->where(['email' => $email])->get();
+        $user = $this->model->getByEmail($email);
         // echo password_hash($password, PASSWORD_DEFAULT);
         // exit;
         if (is_array($user)) {
@@ -29,16 +29,8 @@ class User {
         return ['error' => $errorMessage];
     }
 
-
     private function getUser() {
         return $_SESSION['user'] ?? false;
-    }
-    
-    private function getGroups() {
-        $db = new Database();
-        $groupIds = $db->select(['group-id'])->from('user-groups')->where(['user-id' => $this->user['id']])->getAll();
-        $groups = $db->select(['name'])->from('groups')->where(['id IN' => $groupIds])->getAll();
-        return $groups;
     }
 
     public static function logout() {
@@ -55,6 +47,6 @@ class User {
     }
 
     public function inGroup($group) {
-        return $group ? in_array($group, $this->getGroups()) : false;
+        return $group ? in_array($group, $this->model->getRegisteredGroups($this->user['id'])) : false;
     }
 }

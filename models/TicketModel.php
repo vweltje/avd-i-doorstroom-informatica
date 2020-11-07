@@ -1,12 +1,8 @@
 <?php
 
-class TicketModel {
-    public $db;
+require_once 'core/Model.php';
 
-    public function __construct() {
-        $this->db = new Database();
-    }
-
+class TicketModel extends Model {
     public function delete($id) {
         $result = $this->db->table('tickets')->where(['id' => $id])->delete();
         header('Location: /');
