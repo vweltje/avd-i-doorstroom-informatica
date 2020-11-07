@@ -26,11 +26,11 @@ class Tickets implements iView {
     }
 
     private function validateInput($data) {
-        if (!$name && !$description) {
+        if (!$data['name'] && !$data['description']) {
             $this->errorMessage = 'Please enter a name and description.';
-        } elseif (!$name) {
+        } elseif (!$data['name']) {
             $this->errorMessage = 'Please enter a name.';
-        } elseif (!$description) {
+        } elseif (!$data['description']) {
             $this->errorMessage = 'Please enter a description.';
         } else {
             return true;

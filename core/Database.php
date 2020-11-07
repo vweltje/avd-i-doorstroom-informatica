@@ -114,7 +114,8 @@ class Database {
 
     private function executeQuery($query = false) {
         $statement = $this->db->prepare($query ? $query : $this->getQueryString());
-        return $statement->execute();
+        $statement->execute();
+        return $statement;
     }
 
     private function reset() {
