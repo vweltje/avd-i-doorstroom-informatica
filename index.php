@@ -1,23 +1,17 @@
 <?php
 
 session_start();
+ini_set('display_errors', 1);
 
-require_once 'controllers/User.php';
-require_once 'controllers/View.php';
-
-global $user;
-
-$user = new User();
-$view = new View();
-
+require_once 'core/Router.php';
 ?>
 
 <html lang="en">
     <head>
-        <title><?= $view->getPageTitle() ?></title>
+        <title>Ticketify</title>
         <link rel="stylesheet" href="/assets/css/style.css">
     </head>
     <body>
-        <?= $view->getBody(); ?>
+        <?php Router::getView() ?>
     </body>
 </html>

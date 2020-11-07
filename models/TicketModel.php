@@ -3,6 +3,10 @@
 require_once 'core/Model.php';
 
 class TicketModel extends Model {
+    public function __construct() {
+        parent::__construct();
+    }
+    
     public function delete($id) {
         $result = $this->db->table('tickets')->where(['id' => $id])->delete();
         header('Location: /');

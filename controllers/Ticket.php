@@ -1,16 +1,17 @@
 <?php
 
-require_once 'iView.php';
+require_once 'core/View.php';
 require_once 'helpers/FormHelper.php';
 require_once 'models/TicketModel.php';
 
-class Ticket implements iView {
+class Ticket extends View {
     public $pageTitle = 'Ticket form';
     private $errorMessage = '';
     private $id;
     private $model;
 
     public function __construct($action = false) {
+        parent::__construct();
         $this->id = $_GET['id'] ?? false;
         $this->model = new TicketModel();
 
@@ -21,6 +22,10 @@ class Ticket implements iView {
         } elseif (FormHelper::isPost()) {
             $this->addOrEdit($id);
         }
+        echo $this->loadView('pages/ticketForm', [
+            'errorMessage' => $this->errorMessage,
+            'ticket' => $this->getData()
+        ]);
     }
 
     private function updateStatus($id) {
@@ -70,10 +75,5 @@ class Ticket implements iView {
             $ticket = $this->model->get($this->id);
         }
         return $ticket;
-    }
-
-    public function getBody() {
-        require_once 'views/pages/ticketForm.php';
-        return ticketFormView($this->errorMessage, $this->getData());
     }
 }

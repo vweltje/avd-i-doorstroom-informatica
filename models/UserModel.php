@@ -3,6 +3,10 @@
 require_once 'core/Model.php';
 
 class UserModel extends Model {
+    public function __construct() {
+        parent::__construct();
+    }
+
     public function getByEmail($email) {
         return $this->db->select('*')->from('users')->where(['email' => $email])->get();
     }

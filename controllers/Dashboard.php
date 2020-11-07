@@ -1,25 +1,19 @@
 <?php
 
-require_once 'iView.php';
-require_once 'User.php';
-require_once 'models/TicketModel.php';
+require_once 'core/View.php';
 
-class Dashboard implements iView {
+class Dashboard extends View {
     private $tickets;
     public $pageTitle = 'Dashboard';
 
     public function __construct() {
-        global $user;
-        if (!$user->loggedIn()) {
+        parent::__construct();
+        if (!$this->user->loggedIn()) {
             header('Location: /login');
         }
         $ticketModel = new TicketModel();
         $this->tickets = $ticketModel->getAll();
-    }
-
-    public function getBody() {
-        require_once 'views/pages/dashboard.php';
-        return dashboardView([
+        echo $this->loadView('pages/dashboard', [
             "tickets" => $this->tickets
         ]);
     }

@@ -1,29 +1,30 @@
 <?php
 
-require_once 'iView.php';
-require_once 'User.php';
+require_once 'core/View.php';
 require_once 'helpers/FormHelper.php';
 
-class Login implements iView {
+class Login extends View {
     public $pageTitle = 'Login';
     private $errorMessage = '';
 
     public function __construct() {
-        global $user;
+        parent::__construct();
         if (FormHelper::isPost()) {
             $this->handleLogin();
         }
-        if ($user->loggedIn()) {
+        if ($this->user->loggedIn()) {
             header('Location: /');
         }
+        echo $this->loadView('pages/login', [
+            'errorMessages' => $this->errorMessage
+        ]);
     }
 
     private function handleLogin() {
         $email = FormHelper::getField('email');
         $password = FormHelper::getField('password');
         if ($this->validateInput($email, $password)) {
-            global $user;
-            $response = $user->login($email, $password);
+            $response = $this->user->login($email, $password);
             if (isset($response['error'])) {
                 $this->errorMessage = $response['error'];
             }
@@ -41,10 +42,5 @@ class Login implements iView {
             return true;
         }
         return false;
-    }
-
-    public function getBody() {
-        require_once 'views/pages/login.php';
-        return loginView($this->errorMessage);
     }
 }

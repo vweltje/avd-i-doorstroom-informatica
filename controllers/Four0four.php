@@ -1,12 +1,12 @@
 <?php
 
-require_once 'iView.php';
+require_once 'core/View.php';
 
-class Four0four implements iView {
+class Four0four extends View {
     public $pageTitle = '404 Page not found';
 
-    public function getBody() {
-        require_once 'views/pages/four0four.php';
-        return four0fourView();
+    public function __construct() {
+        parent::__construct();
+        echo $this->loadView('pages/four0four');
     }
 }
