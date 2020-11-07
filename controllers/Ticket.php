@@ -16,11 +16,11 @@ class Ticket extends View {
         $this->model = new TicketModel();
 
         if ($action === 'delete') {
-            $this->model->delete($id);
+            $this->model->delete($this->id);
         } elseif ($action === 'update-status') {
-            $this->updateStatus($id);
+            $this->updateStatus();
         } elseif (FormHelper::isPost()) {
-            $this->addOrEdit($id);
+            $this->addOrEdit();
         }
         echo $this->loadView('pages/ticketForm', [
             'errorMessage' => $this->errorMessage,
@@ -28,23 +28,23 @@ class Ticket extends View {
         ]);
     }
 
-    private function updateStatus($id) {
+    private function updateStatus() {
         $status = FormHelper::getField('status', 'GET');
         if (!empty($status) && $this->validateStatus($status)) {
-            return $this->model->update($id, ['status' => $status]);
+            return $this->model->update($this->id, ['status' => $status]);
         }
     }
 
-    private function addOrEdit($id) {
+    private function addOrEdit() {
         $data = [
             'name' => FormHelper::getField('name'), 
             'description' => FormHelper::getField('description')
         ];
         if ($this->validateInput($data)) {
-            if (!$id) {
+            if (!$this->id) {
                 return $this->model->add($data);
             } 
-            return $this->model->update($id, $data);
+            return $this->model->update($this->id, $data);
         }
     }
 
