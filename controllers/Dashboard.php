@@ -2,7 +2,7 @@
 
 require_once 'iView.php';
 require_once 'User.php';
-require_once 'Tickets.php';
+require_once 'models/TicketModel.php';
 
 class Dashboard implements iView {
     private $tickets;
@@ -13,8 +13,8 @@ class Dashboard implements iView {
         if (!$user->loggedIn()) {
             header('Location: /login');
         }
-        $ticketController = new tickets();
-        $this->tickets = $ticketController->getAllTickets();
+        $ticketModel = new TicketModel();
+        $this->tickets = $ticketModel->getAll();
     }
 
     public function getBody() {

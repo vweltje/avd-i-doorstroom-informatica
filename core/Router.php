@@ -3,7 +3,7 @@
 require_once 'controllers/Dashboard.php';
 require_once 'controllers/Login.php';
 require_once 'controllers/User.php';
-require_once 'controllers/Tickets.php';
+require_once 'controllers/Ticket.php';
 require_once 'controllers/Four0four.php';
 
 class Router {
@@ -16,13 +16,13 @@ class Router {
         } elseif ($route === '/logout') {
             return User::logout();
         } elseif ($route === '/new-ticket') {
-            return new Tickets();
+            return new Ticket();
         } elseif ($route === '/delete-ticket') {
-            return new Tickets($_GET['id'], 'delete');
+            return new Ticket('delete');
         } elseif ($route === '/edit-ticket') {
-            return new Tickets($_GET['id'] ?? false, 'edit');
+            return new Ticket('edit');
         } elseif ($route === '/update-ticket-status') {
-            return new Tickets($_GET['id'] ?? false, 'update-status');
+            return new Ticket('update-status');
         }
         return new Four0four();
     }

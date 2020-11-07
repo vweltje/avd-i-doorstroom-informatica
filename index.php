@@ -1,9 +1,9 @@
 <?php
 
-require_once './controllers/User.php';
-require_once './controllers/View.php';
-
 session_start();
+
+require_once 'controllers/User.php';
+require_once 'controllers/View.php';
 
 global $user;
 
