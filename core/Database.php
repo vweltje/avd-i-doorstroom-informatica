@@ -106,6 +106,13 @@ class Database {
         }
         return false;
     }
+    
+    public function delete() {
+        $sql = "DELETE FROM {$this->table} WHERE {$this->where};";
+        $result = $this->executeQuery($sql)->rowCount();
+        $this->reset();
+        return $result;
+    }
 
     private function getQueryString() {
         $additionalWhere = $this->where ? ' WHERE ' . $this->where : '';

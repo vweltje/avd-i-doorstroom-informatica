@@ -5,6 +5,12 @@ function ticket($ticket) {
 
     $allowedActions = [];
     $moveActions = [];
+    $actionStrings = array(
+        'NEW' => 'pending approval',
+        'APPROVED' => 'todo',
+        'IN_PROGRESS' => 'in progress',
+        'DONE' => 'done',
+    );
 
     if ($ticket->status === 'NEW') {
         if (!$user->inGroup('employee')) {
@@ -18,6 +24,8 @@ function ticket($ticket) {
         if ($user->inGroup('manager')) {
             $allowedActions[] = 'edit';
             $allowedActions[] = 'delete';
+            $allowedActions[] = 'move';
+            $moveActions[] = 'NEW';
         } elseif ($user->inGroup('employee')) {
             $allowedActions[] = 'move';
             $moveActions[] = 'IN_PROGRESS';
@@ -25,23 +33,19 @@ function ticket($ticket) {
     } elseif ($ticket->status === 'IN_PROGRESS') {
         if ($user->inGroup('employee')) {
             $allowedActions[] = 'move';
-            $moveActions[] = 'TODO';
+            $moveActions[] = 'APPROVED';
             $moveActions[] = 'DONE';
         }
     } else {
         if ($user->inGroup('manager') || $user->inGroup('employee')) {
             $allowedActions[] = 'delete';
             $allowedActions[] = 'move';
+            $moveActions[] = 'APPROVED';
+        }
+        if ($user->inGroup('employee')) {
             $moveActions[] = 'IN_PROGRESS';
-            $moveActions[] = 'TODO';
         }
     }
-
-    $actionStrings = array(
-        'TODO' => 'todo',
-        'IN_PROGRESS' => 'in progress',
-        'DONE' => 'done',
-    );
 
     ob_start(); ?>
     <div>
@@ -55,11 +59,11 @@ function ticket($ticket) {
                 <a href="delete-ticket?id=<?= $ticket->id ?>">delete</a>
             <?php endif ?>
             <?php if (in_array('approve', $allowedActions)) : ?>
-                <a href="approve-ticket?id=<?= $ticket->id ?>">approve</a>
+                <a href="update-ticket-status?id=<?= $ticket->id ?>&status=APPROVED">approve</a>
             <?php endif; ?>
             <?php if (in_array('move', $allowedActions)) : ?>
                 <?php foreach ($moveActions as $status) : ?>
-                    <a href="update-status?id=&status=<?= $status ?>">move to <?= $actionStrings[$status] ?></a>
+                    <a href="update-ticket-status?id=<?= $ticket->id ?>&status=<?= $status ?>">move to <?= $actionStrings[$status] ?></a>
                 <?php endforeach ?>
             <?php endif; ?>
         </div>

@@ -8,20 +8,35 @@ class Tickets implements iView {
     private $errorMessage = '';
     private $currentTicketId;
 
-    public function __construct($id = false) {
+    public function __construct($id = false, $action = false) {
         $this->currentTicketId = $id;
-        if (FormHelper::isPost()) {
-            $this->handleFormInput($id);
+
+        if ($action === 'delete') {
+            $this->deleteTicket($id);
+        } elseif ($action === 'update-status') {
+            $this->updateStatus($id);
+        } elseif (FormHelper::isPost()) {
+            $this->adOrEditTicket($id);
         }
     }
 
-    private function handleFormInput($id) {
+    private function updateStatus($id) {
+        $status = FormHelper::getField('status', 'GET');
+        if (!empty($status) && $this->validateStatus($status)) {
+            return $this->updateTicket($id, ['status' => $status]);
+        }
+    }
+
+    private function adOrEditTicket($id) {
         $data = [
             'name' => FormHelper::getField('name'), 
             'description' => FormHelper::getField('description')
         ];
         if ($this->validateInput($data)) {
-            return $id ? $this->updateTicket($id, $data) : $this->createNewTicket($data);
+            if (!$id) {
+                return $this->createNewTicket($data);
+            } 
+            return $this->updateTicket($id, $data);
         }
     }
 
@@ -38,10 +53,18 @@ class Tickets implements iView {
         return false;
     }
 
+    private function validateStatus($status) {
+        $allowedStatusTypes = ['NEW', 'APPROVED', 'IN_PROGRESS', 'DONE'];
+        if (!in_array($status, $allowedStatusTypes)) {
+            $this->errorMessage = 'The status type you have submitted is not allowed.';
+        }
+        return true;
+    }
+
     private function createNewTicket($data) {
         $db = new Database();
         $result = $db->table('tickets')->insert($data);
-        if (is_numeric($response)) {
+        if (is_numeric($result)) {
             header('Location: /');
         }
         $this->errorMessage = "Something went wrong, please try again.";
@@ -50,9 +73,13 @@ class Tickets implements iView {
     private function updateTicket($id, $data) {
         $db = new Database();
         $result = $db->table('tickets')->where(['id' => $id])->update($data);
-        if ($result) {
-            header('Location: /');
-        }
+        header('Location: /');
+    }
+
+    private function deleteTicket($id) {
+        $db = new Database();
+        $result = $db->table('tickets')->where(['id' => $id])->delete();
+        header('Location: /');
     }
 
     public function getAllTickets() {

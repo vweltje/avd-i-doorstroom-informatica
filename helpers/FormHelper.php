@@ -6,6 +6,9 @@ class FormHelper {
     }
 
     public static function getField($fieldName, $type = 'POST') {
+        if ($type === 'GET') {
+            return  $_GET[$fieldName] ?? '';
+        }
         return $_POST[$fieldName] ?? '';
     }
     

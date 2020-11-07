@@ -13,10 +13,10 @@ function dashboardView($data) {
                 <a href="/new-ticket">New ticket</a>
             <?php endif; ?>
             <div id="ticket-table" class="flex-row">
-                <?= ticketList($data['tickets']['NEW'], 'Pending approval') ?>
-                <?= ticketList($data['tickets']['APPROVED'], 'Todo') ?>
-                <?= ticketList($data['tickets']['IN_PROGRESS'], 'In progress') ?>
-                <?= ticketList($data['tickets']['DONE'], 'Done') ?>
+                <?= ticketList($data['tickets']['NEW'] ?? false, 'Pending approval') ?>
+                <?= ticketList($data['tickets']['APPROVED'] ?? false, 'Todo') ?>
+                <?= ticketList($data['tickets']['IN_PROGRESS'] ?? false, 'In progress') ?>
+                <?= ticketList($data['tickets']['DONE'] ?? false, 'Done') ?>
             </div>
         </div>
     <?php return ob_get_clean();
