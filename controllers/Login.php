@@ -5,16 +5,15 @@ require_once 'User.php';
 require_once 'helpers/FormHelper.php';
 
 class Login implements iView {
-    private $user;
     public $pageTitle = 'Login';
     private $errorMessage = '';
 
     public function __construct() {
-        $this->user = new User();
+        global $user;
         if (FormHelper::isPost()) {
             $this->handleLogin();
         }
-        if ($this->user->loggedIn()) {
+        if ($user->loggedIn()) {
             header('Location: /');
         }
     }
@@ -23,7 +22,8 @@ class Login implements iView {
         $email = FormHelper::getField('email');
         $password = FormHelper::getField('password');
         if ($this->validateInput($email, $password)) {
-            $response = $this->user->login($email, $password);
+            global $user;
+            $response = $user->login($email, $password);
             if (isset($response['error'])) {
                 $this->errorMessage = $response['error'];
             }

@@ -1,9 +1,13 @@
 <?php
 
+require_once './controllers/User.php';
 require_once './controllers/View.php';
 
 session_start();
 
+global $user;
+
+$user = new User();
 $view = new View();
 
 ?>

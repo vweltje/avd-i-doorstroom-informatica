@@ -1,9 +1,7 @@
 <?php
 
-require_once 'controllers/User.php';
-
 function pageHeading($heading, $user = false) {
-    $user = new User();
+    global $user;
     ob_start(); ?>
     <header id="pageHeading" class="flex-row">
         <h1><?= $heading ?></h1>
