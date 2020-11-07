@@ -65,7 +65,6 @@ class Tickets implements iView {
         $manipulatedTickets = [];
         foreach ($tickets as $ticket) {
             $status = $ticket->status;
-            unset($ticket->status);
             $manipulatedTickets[$status][] = $ticket;
         }
         return $manipulatedTickets;
