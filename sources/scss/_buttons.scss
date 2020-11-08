@@ -1,0 +1,15 @@
+//
+// Buttons
+// --------------------------------------------------
+
+button,
+.button {
+  background-color: $colorBlue;
+  border: none;
+  border-radius: $radii;
+  padding: #{$spacing * 0.5} $spacing;
+  color: $colorWhite;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
