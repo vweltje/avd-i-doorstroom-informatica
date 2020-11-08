@@ -3,7 +3,6 @@
 require_once 'core/View.php';
 
 class Dashboard extends View {
-    private $tickets;
     protected $pageTitle = 'Dashboard';
 
     public function __construct() {
@@ -12,9 +11,8 @@ class Dashboard extends View {
             header('Location: /login');
         }
         $ticketModel = new TicketModel();
-        $this->tickets = $ticketModel->getAll();
         echo $this->loadView('pages/dashboard', [
-            "tickets" => $this->tickets
+            "tickets" => $ticketModel->getAll()
         ]);
     }
 }
