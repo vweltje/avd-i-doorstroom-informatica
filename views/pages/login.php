@@ -5,7 +5,7 @@
             <?php if (!empty($errorMessage)) : ?>
                 <?= $this->loadView('components/message', [
                     'type' => 'error',
-                    'errorMessage' => $errorMessage
+                    'message' => $errorMessage
                 ]) ?>
             <?php endif; ?>
             <form action="/login" method="post">

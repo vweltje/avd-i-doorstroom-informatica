@@ -1,0 +1,29 @@
+//
+// ticketList
+// --------------------------------------------------
+
+.ticket-list {
+  flex: 1;
+  margin-right: #{$spacing * 2};
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  h2 {
+    margin: 0;
+    margin-bottom: #{$spacing * 2};
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  .ticket-actions {
+    flex-direction: row;
+  }
+
+  #new-ticket-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,21 @@
+//
+// ticket
+// --------------------------------------------------
+
+.ticket {
+  list-style-type: none;
+  background-color: $colorWhite;
+  padding: $spacing;
+  margin-bottom: $spacing;
+  border-radius: $radii;
+
+  h3,
+  p {
+    margin-top: 0;
+    margin-bottom: #{$spacing * 0.5};
+  }
+
+  a.button {
+    margin-bottom: #{$spacing * 0.25};
+  }
+}

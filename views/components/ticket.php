@@ -44,25 +44,25 @@
     }
 ?>
 
-<div>
+<li class="ticket">
     <h3><?= $ticket->name ?></h3>
     <p><?= $ticket->description ?></p>
-    <div>
+    <div class="ticket-actions">
         <?php if (in_array('edit', $allowedActions)) : ?>
-            <a href="edit-ticket?id=<?= $ticket->id ?>">edit</a>
+            <a class="button small gray" href="edit-ticket?id=<?= $ticket->id ?>">Edit</a>
         <?php endif ?>
         <?php if (in_array('delete', $allowedActions)) : ?>
-            <a href="delete-ticket?id=<?= $ticket->id ?>">delete</a>
+            <a class="button small gray" href="delete-ticket?id=<?= $ticket->id ?>">Delete</a>
         <?php endif ?>
         <?php if (in_array('approve', $allowedActions)) : ?>
-            <a href="update-ticket-status?id=<?= $ticket->id ?>&status=APPROVED">approve</a>
+            <a class="button small gray" href="update-ticket-status?id=<?= $ticket->id ?>&status=APPROVED">Approve</a>
         <?php endif; ?>
         <?php if (in_array('move', $allowedActions)) : ?>
             <?php foreach ($moveActions as $status) : ?>
-                <a href="update-ticket-status?id=<?= $ticket->id ?>&status=<?= $status ?>">move to <?= $actionStrings[$status] ?></a>
+                <a class="button small gray" href="update-ticket-status?id=<?= $ticket->id ?>&status=<?= $status ?>">Move to <?= $actionStrings[$status] ?></a>
             <?php endforeach ?>
         <?php endif; ?>
     </div>
-</div>
+</li>
 
 

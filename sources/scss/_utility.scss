@@ -4,11 +4,10 @@
 
 .container {
   position: relative;
-  padding: 0 #{$spacing * 1.5};
+  padding: 0 #{$spacing * 4};
   width: 100%;
   max-width: $containerWidth;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 
   @media screen and (max-width: $breakpointMedium) {
     padding: 0 10px;

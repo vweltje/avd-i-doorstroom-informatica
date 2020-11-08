@@ -16,7 +16,7 @@ class Login extends View {
             header('Location: /');
         }
         echo $this->loadView('pages/login', [
-            'errorMessages' => $this->errorMessage
+            'errorMessage' => $this->errorMessage
         ]);
     }
 

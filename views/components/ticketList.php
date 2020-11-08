@@ -1,10 +1,11 @@
-<div class="flex-column">
+<div class="ticket-list">
     <h2><?= $listTitle ?></h2>
-    <div class="flex-column ticket-column">
+    <?= isset($additionalView) ? $this->loadView($additionalView) : '' ?>
+    <ul>
         <?php if ($tickets) :
             foreach ($tickets as $ticket) : ?>
                 <?= $this->loadView('components/ticket', ['ticket' => $ticket]) ?>
             <?php endforeach;
         endif ?>
-    </div>
+    </ul>
 </div>

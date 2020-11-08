@@ -2,11 +2,23 @@
 // pageHeader
 // --------------------------------------------------
 
-#pageHeading {
-  border-bottom: 1px solid $colorLightGreen;
+#page-heading {
   width: 100%;
+  background-color: $colorWhite;
+  padding: $spacing 0;
 
-  #pageHeading--userActions {
+  #page-heading--inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  #page-heading-account {
+    display: flex;
     align-items: center;
     justify-content: center;
 

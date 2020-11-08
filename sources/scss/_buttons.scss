@@ -12,4 +12,16 @@ button,
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+
+  &.small {
+    padding: #{$spacing * 0.25} #{$spacing * 0.5};
+    font-weight: 300;
+  }
+
+  &.gray {
+    background-color: $colorGray;
+    color: $colorBlack;
+  }
 }

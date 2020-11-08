@@ -3,7 +3,18 @@
 // --------------------------------------------------
 
 .message {
-  &.error p {
-    color: red;
+  background-color: $colorLightGreen;
+  padding: #{$spacing * 0.5} $spacing;
+  border-radius: $radii;
+  margin-bottom: $spacing;
+
+  p {
+    margin: 0;
+    color: $colorWhite;
+    font-weight: 300;
+  }
+
+  &.error {
+    background-color: $colorRed;
   }
 }
