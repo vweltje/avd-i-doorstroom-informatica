@@ -4,20 +4,26 @@ require_once 'controllers/User.php';
 
 class View {
     protected $user;
+    private $shouldRenderLayout;
+    protected $pageTitle;
 
     public function __construct() {
         $this->user = new User();
+        $this->shouldRenderLayout = true;
     }
 
     protected function loadView($path, $data = []) {
         $output = NULL;
-        $filePath = "views/{$path}.php";
-        if (file_exists($filePath)) {
+        if ($this->shouldRenderLayout) {
+            $data = ['view' => $path, 'data' => $data, 'pageTitle' => $this->pageTitle];
+            $path = 'layout';
+            $this->shouldRenderLayout = false;
+        }
+        $viewPath = "views/{$path}.php";
+        if (file_exists($viewPath)) {
             extract($data);
             ob_start();
-            include $filePath;
-
-            // End buffering and return its contents
+            include $viewPath;
             $output = ob_get_clean();
         }
         return $output;

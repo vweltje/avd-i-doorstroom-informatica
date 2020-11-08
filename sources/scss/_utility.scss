@@ -21,3 +21,20 @@
     max-width: $containerWidthSmall;
   }
 }
+
+.box-container {
+  @extend .container;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+}
+
+.box {
+  padding: #{$spacing * 3};
+  background-color: $colorWhite;
+  width: 100%;
+  max-width: $breakpointExtraSmall;
+  border-radius: $radii;
+  margin-top: #{$spacing * 4};
+}

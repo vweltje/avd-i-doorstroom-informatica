@@ -4,7 +4,7 @@ require_once 'core/View.php';
 
 class Dashboard extends View {
     private $tickets;
-    public $pageTitle = 'Dashboard';
+    protected $pageTitle = 'Dashboard';
 
     public function __construct() {
         parent::__construct();

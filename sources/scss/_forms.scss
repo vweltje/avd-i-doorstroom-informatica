@@ -2,6 +2,16 @@
 // Forms
 // --------------------------------------------------
 
+%input {
+  width: 100%;
+  display: block;
+  margin-bottom: $spacing;
+  padding: #{$spacing * 0.5} $spacing;
+  border-radius: $radii;
+  border: 2px solid $colorGray;
+  margin: 0;
+}
+
 form {
   width: 100%;
   margin: 0;
@@ -13,14 +23,14 @@ form {
     margin-bottom: #{$spacing * 0.25};
   }
 
-  input {
-    width: 100%;
-    display: block;
-    margin-bottom: $spacing;
-    padding: #{$spacing * 0.5} $spacing;
-    border-radius: $radii;
-    border: 2px solid $colorGray;
-    margin: 0;
+  input,
+  textarea {
+    @extend %input;
+  }
+
+  textarea {
+    min-height: 76px;
+    resize: vertical;
   }
 
   button {
@@ -29,5 +39,19 @@ form {
 
   .form-field {
     margin-bottom: $spacing;
+  }
+
+  .form-buttons {
+    display: flex;
+
+    .button,
+    button {
+      flex: 1;
+      margin-right: #{$spacing * 0.25};
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 }

@@ -7,13 +7,15 @@
   background-color: $colorWhite;
   padding: $spacing 0;
 
-  #page-heading--inner {
+  #page-heading-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    h1 {
-      margin: 0;
+    #icon {
+      font-size: 32px;
+      font-weight: 600;
+      text-decoration: none;
     }
   }
 

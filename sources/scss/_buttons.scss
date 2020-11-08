@@ -13,11 +13,13 @@ button,
   font-size: 16px;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
   display: inline-block;
 
   &.small {
     padding: #{$spacing * 0.25} #{$spacing * 0.5};
     font-weight: 300;
+    font-size: 14px;
   }
 
   &.gray {

@@ -2,26 +2,8 @@
 // Page login
 // --------------------------------------------------
 
-#login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-
-  #login-box {
-    padding: #{$spacing * 3};
-    background-color: $colorWhite;
-    width: 100%;
-    max-width: $breakpointExtraSmall;
-    border-radius: $radii;
-  }
-
-  h1 {
-    text-align: center;
-    margin: 0;
-    margin-bottom: $spacing;
-  }
+#login h1 {
+  text-align: center;
+  margin: 0;
+  margin-bottom: $spacing;
 }
