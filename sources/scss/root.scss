@@ -3,18 +3,12 @@
 // --------------------------------------------------
 
 // Base
-@import "normalize";
 @import "variables";
-@import "globals";
-@import "reset";
+@import "base";
 @import "typography";
 @import "utility";
 @import "forms";
 @import "buttons";
-
-// Pages
-@import "pages/login";
-@import "pages/dashboard";
 
 // Components
 @import "components/message";

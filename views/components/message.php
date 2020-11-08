@@ -1,5 +1,3 @@
 <div class="message <?= $type ?>">
-    <p>
-        <?= $message ?>
-    </p>
+    <p><?= $message ?></p>
 </div>

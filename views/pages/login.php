@@ -1,6 +1,6 @@
-<div id="login" class="box-container"> 
+<div class="box-container"> 
     <div class="box">
-        <h1>Login</h1>
+        <h1 class="box-heading">Login</h1>
         <?php if (!empty($errorMessage)) : ?>
             <?= $this->loadView('components/message', [
                 'type' => 'error',

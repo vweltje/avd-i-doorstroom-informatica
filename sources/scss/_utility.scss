@@ -28,17 +28,23 @@
   align-items: flex-start;
   justify-content: center;
   height: 100%;
-}
 
-.box {
-  padding: #{$spacing * 3};
-  background-color: $colorWhite;
-  width: 100%;
-  max-width: $breakpointExtraSmall;
-  border-radius: $radii;
-  margin-top: #{$spacing * 4};
+  .box {
+    padding: #{$spacing * 3};
+    background-color: $colorWhite;
+    width: 100%;
+    max-width: $breakpointExtraSmall;
+    border-radius: $radii;
+    margin-top: #{$spacing * 4};
 
-  @media screen and (max-width: $breakpointMedium) {
-    padding: $spacing;
+    @media screen and (max-width: $breakpointMedium) {
+      padding: $spacing;
+    }
+
+    .box-heading {
+      text-align: center;
+      margin: 0;
+      margin-bottom: $spacing;
+    }
   }
 }

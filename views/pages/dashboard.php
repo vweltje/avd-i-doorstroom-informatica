@@ -1,3 +1,3 @@
-<div id="dashboard" class="container"> 
+<div class="container"> 
     <?= $this->loadView('components/ticketTable', ['tickets' => $tickets]) ?>
 </div>
