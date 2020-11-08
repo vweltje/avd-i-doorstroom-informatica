@@ -46,7 +46,19 @@ class User {
         return $this->user['name'] ?? '';
     }
 
+    public function getGroups() {
+        return implode(", ", $this->model->getUserGroups($this->user['id']));
+    }
+
     public function inGroup($group) {
-        return $group ? in_array($group, $this->model->getRegisteredGroups($this->user['id'])) : false;
+        return $group ? in_array($group, $this->model->getUserGroups($this->user['id'])) : false;
+    }
+
+    public function getInitials() {
+        $initials = "";
+        foreach (explode(" ", $this->getName()) as $namePart) {
+            $initials .= $namePart[0];
+        }
+        return $initials;
     }
 }

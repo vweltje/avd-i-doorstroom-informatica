@@ -1,0 +1,34 @@
+//
+// Foldable list
+// --------------------------------------------------
+
+.foldable-list-container {
+  position: absolute;
+  top: calc(100% + #{$spacing * 0.25});
+  width: 100%;
+  background-color: $colorWhite;
+  border-radius: $radii;
+  height: 0;
+  overflow: hidden;
+  transition: ease height $transitionSpeed;
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+
+    li {
+      width: 100%;
+
+      a {
+        width: 100%;
+        text-align: center;
+        padding: $spacing;
+        display: block;
+        text-decoration: none;
+      }
+    }
+  }
+}

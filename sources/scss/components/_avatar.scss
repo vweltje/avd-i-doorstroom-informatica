@@ -1,0 +1,15 @@
+//
+// Avatar
+// --------------------------------------------------
+
+.avatar {
+  background-color: $colorLightGray;
+  color: $colorGray;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}

@@ -11,7 +11,7 @@ class UserModel extends Model {
         return $this->db->select('*')->from('users')->where(['email' => $email])->get();
     }
 
-    public function getRegisteredGroups($id) {
+    public function getUserGroups($id) {
         $db = new Database();
         $groupIds = $this->db->select(['group-id'])->from('user-groups')->where(['user-id' => $id])->getAll();
         return $this->db->select(['name'])->from('groups')->where(['id IN' => $groupIds])->getAll();

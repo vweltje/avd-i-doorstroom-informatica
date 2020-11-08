@@ -5,7 +5,6 @@
 #page-heading {
   width: 100%;
   background-color: $colorWhite;
-  padding: $spacing 0;
 
   #page-heading-inner {
     display: flex;
@@ -16,6 +15,7 @@
       font-size: 32px;
       font-weight: 600;
       text-decoration: none;
+      padding: $spacing 0;
     }
   }
 

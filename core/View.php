@@ -25,6 +25,8 @@ class View {
             ob_start();
             include $viewPath;
             $output = ob_get_clean();
+        } else {
+            throw new Exception("Unable to locate component \"{$viewPath}\"");
         }
         return $output;
     }
