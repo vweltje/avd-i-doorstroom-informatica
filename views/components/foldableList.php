@@ -2,7 +2,7 @@
     <div class="foldable-list-container">
         <ul>
             <?php foreach ($links as $link) : ?>
-                <li><a href="<?= $link['link'] ?>"><?= $link['label'] ?></a></li>
+                <li><a class="button" href="<?= $link['link'] ?>"><?= $link['label'] ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>

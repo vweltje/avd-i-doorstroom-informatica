@@ -11,7 +11,7 @@ export default class foldableList {
   setConstants() {
     this.$container = this.$element.find(container);
     this.active = false;
-    this.height = this.$container.find("ul").height();
+    this.height = this.$container.find("ul").outerHeight();
   }
 
   onTriggerClick() {

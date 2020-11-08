@@ -6,6 +6,10 @@
   flex: 1;
   margin-right: #{$spacing * 2};
 
+  @media screen and (max-width: $breakpointMedium) {
+    width: 100%;
+  }
+
   &:last-of-type {
     margin-right: 0;
   }

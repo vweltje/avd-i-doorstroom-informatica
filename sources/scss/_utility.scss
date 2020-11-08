@@ -10,7 +10,7 @@
   margin: 0 auto;
 
   @media screen and (max-width: $breakpointMedium) {
-    padding: 0 10px;
+    padding: 0 $spacing;
   }
 
   &.smaller {
@@ -37,4 +37,8 @@
   max-width: $breakpointExtraSmall;
   border-radius: $radii;
   margin-top: #{$spacing * 4};
+
+  @media screen and (max-width: $breakpointMedium) {
+    padding: $spacing;
+  }
 }

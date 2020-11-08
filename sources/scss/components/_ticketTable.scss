@@ -5,4 +5,9 @@
 #ticket-table {
   display: flex;
   margin-top: #{$spacing * 4};
+
+  @media screen and (max-width: $breakpointMedium) {
+    flex-direction: column;
+    margin-top: #{$spacing * 2};
+  }
 }

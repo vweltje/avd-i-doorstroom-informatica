@@ -4,7 +4,7 @@
 
 .foldable-list-container {
   position: absolute;
-  top: calc(100% + #{$spacing * 0.25});
+  top: calc(100% + #{$spacing});
   width: 100%;
   background-color: $colorWhite;
   border-radius: $radii;
@@ -13,7 +13,7 @@
   transition: ease height $transitionSpeed;
 
   ul {
-    display: flex;
+    display: block;
     list-style-type: none;
     padding: 0;
     width: 100%;
@@ -24,10 +24,7 @@
 
       a {
         width: 100%;
-        text-align: center;
-        padding: $spacing;
         display: block;
-        text-decoration: none;
       }
     }
   }
