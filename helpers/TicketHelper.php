@@ -3,28 +3,19 @@
 class TicketHelper {
     public static function getAllowedUserActions($status, $user) {
         $allowedActions = [];
-        if ($status === 'NEW') {
-            if (!$user->inGroup('employee')) {
-                $allowedActions[] = 'edit';
-                $allowedActions[] = 'delete';
-            }
+        if ($status === 'NEW' && !$user->inGroup('employee')) {
             if ($user->inGroup('manager')) {
                 $allowedActions[] = 'approve';
             }
-        } elseif ($status === 'APPROVED') {
+            $allowedActions[] = 'edit';
+            $allowedActions[] = 'delete';
+        } elseif (!$user->inGroup('client')) {
             if ($user->inGroup('manager')) {
                 $allowedActions[] = 'edit';
                 $allowedActions[] = 'delete';
-                $allowedActions[] = 'move';
-            } elseif ($user->inGroup('employee')) {
-                $allowedActions[] = 'move';
             }
-        } elseif ($status === 'IN_PROGRESS' && $user->inGroup('employee')) {
             $allowedActions[] = 'move';
-        } elseif ($user->inGroup('manager') || $user->inGroup('employee')) {
-            $allowedActions[] = 'delete';
-            $allowedActions[] = 'move';
-        }
+        } 
         return $allowedActions;
     }
 
@@ -33,19 +24,14 @@ class TicketHelper {
         if ($status === 'APPROVED') {
             if ($user->inGroup('manager')) {
                 $moveActions[] = 'NEW';
-            } elseif ($user->inGroup('employee')) {
-                $moveActions[] = 'IN_PROGRESS';
             }
-        } elseif ($status === 'IN_PROGRESS' && $user->inGroup('employee')) {
+            $moveActions[] = 'IN_PROGRESS';
+        } elseif ($status === 'IN_PROGRESS') {
             $moveActions[] = 'APPROVED';
             $moveActions[] = 'DONE';
         } elseif ($status === 'DONE') {
-            if ($user->inGroup('manager') || $user->inGroup('employee')) {
-                $moveActions[] = 'APPROVED';
-            }
-            if ($user->inGroup('employee')) {
-                $moveActions[] = 'IN_PROGRESS';
-            }
+            $moveActions[] = 'APPROVED';
+            $moveActions[] = 'IN_PROGRESS';
         }
         return $moveActions;
     }
