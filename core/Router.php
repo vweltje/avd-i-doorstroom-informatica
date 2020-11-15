@@ -2,7 +2,6 @@
 
 require_once 'controllers/Dashboard.php';
 require_once 'controllers/Login.php';
-require_once 'controllers/User.php';
 require_once 'controllers/Ticket.php';
 require_once 'controllers/Four0four.php';
 
