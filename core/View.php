@@ -2,6 +2,8 @@
 
 require_once 'controllers/User.php';
 
+// demo
+
 class View {
     protected $user;
     private $shouldRenderLayout;
