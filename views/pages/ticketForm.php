@@ -10,7 +10,7 @@ require_once 'helpers/FormHelper.php';
         <?php if (!empty($errorMessage)) : ?>
             <?= $this->loadView('components/message', ['type' => 'error', 'message' => $errorMessage]) ?>
         <?php endif; ?>
-        <form action="" method="post">
+        <form method="post">
             <div class="form-field">
                 <label for="name">Subject</label>
                 <input id="name" type="text" name="name" placeholder="Enter a subject"  value="<?= FormHelper::getFieldValue('name', $ticket['name'] ?? false) ?>" />

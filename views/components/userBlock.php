@@ -1,6 +1,6 @@
 <div id="user-block" class="foldable-list-trigger">   
     <div>
-        <span id="name"><?= $this->user->getName(); ?></span>
+        <span id="user-name"><?= $this->user->getName(); ?></span>
         <span id="group"><?= $this->user->getGroups(); ?></span>
     </div>
     <div>
